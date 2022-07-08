@@ -1,0 +1,48 @@
+* {
+  color: white;
+  background-color: #091827;
+}
+
+#nav {
+  background-color: #142f47;
+  margin-bottom: 10vh;
+}
+
+#title {
+  background-color: #142f47;
+  display: flex;
+  flex-direction: row;
+  margin-left: 35px;
+}
+
+#addTask {
+  width: 40vw;
+  height: 7vh;
+  border: 2px solid white;
+  padding-left: 30px;
+  font-size: 20px;
+}
+
+
+#addButton {
+  width: 6%;
+  height: 7vh;
+  border: 2px solid white;
+  margin-left: 10px;
+  background-color: #1a3c5a;
+  color: white;
+  margin-bottom: 10vh;
+}
+
+#list {
+  display: flex;
+  flex-direction: column;
+}
+
+.listItem {
+  width: 40vw;
+  height: 7vh;
+  border: 2px solid white;
+  padding-left: 30px;
+  font-size: 20px;
+}
