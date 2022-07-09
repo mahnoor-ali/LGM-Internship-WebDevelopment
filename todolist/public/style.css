@@ -1,6 +1,6 @@
 * {
   color: white;
-  background-color: #091827;
+  background-color: #05101c;
 }
 
 #nav {
@@ -21,8 +21,8 @@
   border: 2px solid white;
   padding-left: 30px;
   font-size: 20px;
+  border-radius: 8px;
 }
-
 
 #addButton {
   width: 6%;
@@ -32,17 +32,47 @@
   background-color: #1a3c5a;
   color: white;
   margin-bottom: 10vh;
+  border-radius: 8px;
 }
 
 #list {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .listItem {
-  width: 40vw;
-  height: 7vh;
-  border: 2px solid white;
-  padding-left: 30px;
+  width: 47vw;
+  height: 60px;
+  line-height: 45px;
+  padding-left: 20px;
   font-size: 20px;
+  background-color: #2c3a46;
+  border: 1px solid gray;
+  border-radius: 8px;
+  text-align: justify;
+}
+
+.listItem span {
+  display: inline-block;
+  vertical-align: middle;
+  background-color: #2c3a46;
+  line-height: normal;
+}
+
+.bi-trash3-fill {
+  float: right;
+  padding: 0.4rem 0.7rem 0 0;
+}
+.bi-circle, .bi-check-circle {
+  padding: 0 0.5rem 0 0;
+}
+
+.bi {
+  background-color: #2c3a46;
+}
+
+.bi:hover {
+  cursor: pointer;
 }
