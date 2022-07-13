@@ -16,18 +16,27 @@ export default function ListItem(props) {
     }
   }
 
-  const handleDelete = () => {
+  const handleDelete = (event) => {
     // delete the item from local storage
     // localStorage.removeItem(document.getElementById('task').innerHTML);
+
+    let parentId = event.target.parentNode.id; //get parent Id of clicked item
+    parentId = document.getElementById(parentId);
+
+    while(parentId.firstElementChild){
+      parentId.removeChild(parentId.lastElementChild);
+    }
+
+     parentId.remove();
+    
+    
   }
 
   return (
-    <div id="list">
-      <div className="listItem">
+      <div id={props.count} className="listItem">
         <span onClick={handleCheck} className="align-middle"><i id="check" className="bi bi-circle"></i></span>
-        <span> my task 1  </span>
+        <span> {props.listItem}  </span>
         <i onClick={handleDelete}  id="delete" className="bi bi-trash3-fill "></i>
       </div>
-    </div>
   )
 }
