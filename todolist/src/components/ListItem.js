@@ -23,13 +23,11 @@ export default function ListItem(props) {
     let parentId = event.target.parentNode.id; //get parent Id of clicked item
     parentId = document.getElementById(parentId);
 
-    while(parentId.firstElementChild){
+    while(parentId.firstElementChild){ //delete children of parent
       parentId.removeChild(parentId.lastElementChild);
     }
 
-     parentId.remove();
-    
-    
+     parentId.remove(); //remove parent
   }
 
   return (

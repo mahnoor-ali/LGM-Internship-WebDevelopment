@@ -19,9 +19,9 @@ export default function InputItem() {
     }
 
     // add todo item to local storage as soon as prop 'todo' changes    
-    useEffect(() => {
-        localStorage.setItem("todo", JSON.stringify(todo));
-    }, [todo])
+    // useEffect(() => {
+    //     localStorage.setItem("todo", JSON.stringify(todo));
+    // }, [todo])
     
     //update the task input value
     const setTodoItem = (event) => {
