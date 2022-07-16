@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import ListItem from './ListItem';
 
 export default function InputItem() {
@@ -18,11 +18,6 @@ export default function InputItem() {
         setTodoList(todoList.concat(<ListItem listItem={task} key={listCount} count={listCount} />) );
     }
 
-    // add todo item to local storage as soon as prop 'todo' changes    
-    // useEffect(() => {
-    //     localStorage.setItem("todo", JSON.stringify(todo));
-    // }, [todo])
-    
     //update the task input value
     const setTodoItem = (event) => {
         setTask(event.target.value);

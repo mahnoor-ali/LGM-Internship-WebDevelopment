@@ -52,6 +52,8 @@
   border: 1px solid gray;
   border-radius: 8px;
   text-align: justify;
+  overflow: auto;
+  margin-bottom: 10px;
 }
 
 .listItem span {
@@ -75,4 +77,11 @@
 
 .bi:hover {
   cursor: pointer;
+}
+
+.checked{
+  text-decoration: line-through;
+}
+.unchecked{
+  text-decoration: none;
 }
