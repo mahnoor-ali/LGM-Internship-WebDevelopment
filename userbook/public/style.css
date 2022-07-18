@@ -1,0 +1,12 @@
+
+.navbar, .nav {
+    background-color:rgba(219, 230, 250, 0.95);
+  }
+  
+.card:hover{
+    transform: scale(1.05); 
+  }
+  
+.card{
+    box-shadow: 4px 4px 5px lightblue;
+  }
