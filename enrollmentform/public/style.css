@@ -1,0 +1,33 @@
+body {
+  margin: 0px;
+}
+
+#flex {
+  display: flex;
+  justify-content: center;
+}
+
+#form {
+  width: 40%;
+  padding: 50px;
+}
+
+#card {
+  width: 55%;
+  padding: 50px;
+}
+
+#main {
+  background-color: blue; /* For browsers that do not support gradients */
+  background-image: linear-gradient(to right, #97cde0, #4cc57c);
+}
+
+#form {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#card {
+  width: 100%;
+  box-sizing: border-box;
+}
