@@ -12,8 +12,6 @@ export default function Main() {
 
     console.log("single obj: " , formData);
     console.log("list of obj: " , registrationsList);
-
-   //check vimod thapa controlled vs uncont...
     
     return (
         <div id="main">

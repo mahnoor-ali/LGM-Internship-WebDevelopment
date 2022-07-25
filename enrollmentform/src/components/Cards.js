@@ -15,7 +15,7 @@ export default function Card(props) {
                         <p className="card-text">{props.skills}</p>
                     </div>
                 </div>
-            </div>
+            </div> 
         </div>
     )
 }
