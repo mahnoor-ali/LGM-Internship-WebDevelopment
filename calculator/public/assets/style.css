@@ -1,0 +1,35 @@
+* {
+  font-size: 35px;
+}
+.button {
+  /* at about 400px width of screen, Btn width reduce to 70px almost */
+  width: 85px;
+  height: 60px;
+  background-color: #4e4e4e;
+  color: white;
+  border: 1px solid black;
+}
+
+#buttonsBoard {
+  margin: auto;
+  width: 425px;
+  /* when screen becomes 425px,make width 100% */
+}
+.operand {
+  background-color: rgb(202, 91, 0) !important;
+}
+
+#screen {
+  width: 425px;
+  margin: auto;
+}
+
+#screen input {
+  width: 100%;
+  border: 2px solid black;
+  height: 100px;
+}
+
+#calculator{
+    margin-top: 10vh;
+}
