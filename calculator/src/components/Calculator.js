@@ -12,7 +12,26 @@ export default function Calculator() {
     const operatorFirst = ['log', 'ln', 'sin', 'cos', 'tan', '√', '.']; //contains those operators that can be first in the expression
     const operatorLater = ['x²', 'x!', '%', '/', '-', '+']; //contains those operators that cannot be first in the expression
     const evaluateExpression = (character) => {
-        
+        //if its invalid expression, return error and clear the screen and expression
+        if ((lastCharacter === '' || (operatorFirst.includes(lastCharacter))) && (operatorLater.includes(character))) {
+            // to avoid adding multiple operators in a row that results in an error
+            setResult("BAD EXPRESSION");
+            setLastCharacter('');
+            setExpression('');
+            console.log("1st check");
+        }
+        // consecutive occurence of " binary then unary operator" OR "binary then binary operator" is not allowed
+        else if ((operatorLater.includes(lastCharacter)) && ((operatorFirst.includes(character)) || (operatorLater.includes(character)))) {
+            //to avoid adding multiple operators in a row that results in an error
+            setResult("BAD EXPRESSION");
+            setLastCharacter('');
+            setExpression('');
+            console.log("2nd check");
+        }
+        else {
+            if (character === '.') {
+                character = "0.";
+            }
 
             if((character!=='=')&&(character!=='CE')){
             setExpression(expression+character);
@@ -35,7 +54,14 @@ export default function Calculator() {
             }
             else {
                 setLastCharacter(character); //update the last character
-            }        
+            }
+
+            console.log("exp: " , expression);
+            console.log("last: ",lastCharacter);
+            console.log("char: " , character);
+            console.log("res: " , result);
+
+        }
     }
 
     return (
