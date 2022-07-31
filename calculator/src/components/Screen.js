@@ -1,9 +1,15 @@
 import React from 'react'
 
-export default function Screen() {
+export default function Screen(props) {
+    let error=false;
+    if(props.result==='BAD EXPRESSION')
+    {
+        error=true;
+    }
   return (
-    <div id="screen" className="d-flex justify-content-center">
-        <input type="number" />
+    <div id="screen">
+        <div id="expression" readOnly> {props.expression} </div>
+        <div id="result" className={error? "text-danger" : ""}>{props.result} </div>
     </div>
   )
 }
