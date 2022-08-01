@@ -3,16 +3,22 @@
 }
 .button {
   /* at about 400px width of screen, Btn width reduce to 70px almost */
-  width: 85px;
-  height: 60px;
+  width: 81px;
+  margin: 2px;
+  height: 58px;
   background-color: #4e4e4e;
   color: white;
   border: 1px solid black;
 }
 
 #keyPad {
+  border-radius: 10px;
   margin: auto;
-  width: 425px;
+  width: 439px;
+  background-color: black;
+  border-bottom: 6px solid black;
+  border-right: 2px solid black;
+  border-left: 2px solid black;
   /* when screen becomes 425px,make width 100% */
 }
 .operand {
@@ -20,9 +26,11 @@
 }
 
 #screen {
-  width: 425px;
-  border: 2px solid black;
+  width: 439px;
+  border: 10px solid black;
+  border-bottom: 7px solid black;
   margin: auto;
+  border-radius: 10px;
 }
 
 #screen #expression {
@@ -38,5 +46,5 @@
 }
 
 #calculator{
-    margin-top: 10vh;
+    margin-top: 7vh;
 }
