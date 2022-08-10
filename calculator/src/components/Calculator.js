@@ -2,15 +2,16 @@ import React, { useEffect, useState } from 'react'
 import Button from './Button'
 import Screen from './Screen'
 
-export default function Calculator() {
+export default function Calculator() 
+{
     const [lastCharacter, setLastCharacter] = useState('');
     const [result, setResult] = useState('');
     const [expression, setExpression] = useState('');
     const [visibleExpression, setVisibleExpression] = useState('');
     // const buttonsList = ['x²', 'log', 'ln', '(', ')', 'x!', 'C', 'CE', '%', '/', 'sin', '7', '8', '9', 'x', 'cos', '4', '5', '6', '-', 'tan', '1', '2', '3', '+', '√', 'π', '0', '.', '='];
-    const buttonsList = ['x²', 'x!', '√', 'π', '(', ')', '×', 'C', '7', '8', '9', 'X', '4', '5', '6', '-', '1', '2', '3', '/', '.', '0', '=', '+'];
+    const buttonsList = ['x²', 'x!', '√', 'π', '(', ')', '×', 'C', '7', '8', '9', '-', '4', '5', '6', 'x', '1', '2', '3', '/', '.', '0', '=', '+'];
     const operand = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
-    const operatorFirst = ['(', '√']; //contains those operators that can be first in the expression
+    const operatorFirst = ['√']; //contains those operators that can be first in the expression
     const operatorLater = ['x²', 'x!', '%', '/', '-', '+', '*']; //contains those operators that cannot be first in the expression
 
     function Factorial(n) {
@@ -77,6 +78,34 @@ export default function Calculator() {
             reset();
         }
         else {
+             //parenthesis validation in expression
+             if (character === ')') {
+                if (expression.includes('(')) {
+                    //check if both opening and closing parenthesis are equal
+                    let count = -1;
+                    for (let i = 0; i < expression.length; i++) {
+                        if (expression[i] === '(') {
+                            count++;
+                        }
+                        else if (expression[i] === ')') {
+                            count--;
+                        }
+                    }
+                    if (count === 0) {
+                        setExpression(expression + character);
+                        setLastCharacter(character);
+                    }
+                    else {
+                        setResult("BAD p EXPRESSION");
+                        reset();
+                    }
+                }
+                else {
+                    setResult("BAD EXPRESSION");
+                    reset();
+                }
+            }
+
             if (character === 'x') {
                 character = "*";
             }
