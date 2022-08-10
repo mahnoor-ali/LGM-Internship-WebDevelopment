@@ -8,11 +8,10 @@ export default function Calculator() {
     const [expression, setExpression] = useState('');
     const [visibleExpression, setVisibleExpression] = useState('');
     // const buttonsList = ['x²', 'log', 'ln', '(', ')', 'x!', 'C', 'CE', '%', '/', 'sin', '7', '8', '9', 'x', 'cos', '4', '5', '6', '-', 'tan', '1', '2', '3', '+', '√', 'π', '0', '.', '='];
-    const buttonsList = ['%', 'x!', '√', 'π', 'x²', '(', ')', 'C', '7', '8', '9', 'x', '4', '5', '6', '-', '1', '2', '3', '/', '.', '0', '=', '+'];
+    const buttonsList = ['x²', 'x!', '√', 'π', '(', ')', '×', 'C', '7', '8', '9', 'X', '4', '5', '6', '-', '1', '2', '3', '/', '.', '0', '=', '+'];
     const operand = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
     const operatorFirst = ['(', '√']; //contains those operators that can be first in the expression
     const operatorLater = ['x²', 'x!', '%', '/', '-', '+', '*']; //contains those operators that cannot be first in the expression
-
 
     function Factorial(n) {
         var ans = 1;
@@ -25,11 +24,42 @@ export default function Calculator() {
         setExpression('');
     }
 
-    const evaluateExpression = (character) => {
-        if (character === 'x') {
-            character = "*";
-        }
+    const clear = () => {    //clear screen
+        setExpression('');
+        setVisibleExpression('');
+        setResult('');
+        setLastCharacter('');
+    }
 
+    const clearEntry = () => {
+        setExpression(expression.slice(0, -1));
+        setVisibleExpression(expression.slice(0, -1));
+        setLastCharacter(expression.slice(expression.length - 1));
+    }
+
+    // check expression validity then evaluate the expression
+    const evaluate = () => {
+        if (expression.includes('(')) {
+            let count = 0;
+            for (let i = 0; i < expression.length; i++) {
+                if (expression[i] === '(') {
+                    count++;
+                }
+                else if (expression[i] === ')') {
+                    count--;
+                }
+            }
+            count === 0 ? setResult(eval(expression)) : setResult("BAD EXPRESSION");
+            setVisibleExpression(expression);
+        }
+        else {
+            setResult(eval(expression));
+            setVisibleExpression(expression);
+        }
+    }
+
+
+    const evaluateExpression = (character) => {
         //if its invalid expression, return error and clear the screen and expression
         if ((lastCharacter === '' || (operatorFirst.includes(lastCharacter))) && (operatorLater.includes(character))) {
             // to avoid adding multiple operators in a row that results in an error
@@ -47,12 +77,15 @@ export default function Calculator() {
             reset();
         }
         else {
+            if (character === 'x') {
+                character = "*";
+            }
+            if ((character !== '=') && (character !== 'CE') && (character !== 'C')) {
+                setExpression(expression + character);
+            }
             if ((lastCharacter === '√') && (operand.includes(character))) {
                 let resultt = Math.sqrt(character);
                 setResult(resultt);
-            }
-            if (character === '%') {
-                setResult(lastCharacter / 100);
             }
             if (character === 'x!') {
                 character = "!";
@@ -68,40 +101,24 @@ export default function Calculator() {
             if (character === 'x²') {
                 character = "**2";
             }
-            if ((character !== '=') && (character !== 'CE') && (character !== 'C')) {
-                setExpression(expression + character);
-            }
-            //if its a valid expression OR equal is pressed, evaluate it and display the result
+            //if its a valid expression and equal is pressed, evaluate it and display the result
             if (character === '=') {
-                //if its a valid expression OR equal is pressed, evaluate it and display the result
-                let resultt = eval(expression);
-                setResult(resultt);
-                setLastCharacter(character);
+                evaluate();
             }
-
-            if ((character === 'C') || (character === 'CE')) {
-                setLastCharacter('');
-                setExpression('');
-                setResult('');
+            if (character === 'C') {
+                clear();
+            }
+            if (character === '×') {
+                clearEntry();
             }
             else {
                 setLastCharacter(character); //update the last character
             }
         }
-
-        //set visibleExpression to last 19 characters of expression
-        if (expression.length > 19) {
-            setVisibleExpression(expression.substring(expression.length - 19, expression.length));
-        }
-        else {
-            setVisibleExpression(expression);
-        }
-
     }
 
-
     useEffect(() => {
-        //set visibleExpression to last 19 characters of expression
+        //visibleExpression = characters that fits screen size i.e last 19 characters of expression
         if (expression.length > 19) {
             setVisibleExpression(expression.substring(expression.length - 19, expression.length));
         }
