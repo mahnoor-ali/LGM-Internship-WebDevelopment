@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Button from './Button'
 import Screen from './Screen'
 
@@ -6,20 +6,21 @@ export default function Calculator() {
     const [lastCharacter, setLastCharacter] = useState('');
     const [result, setResult] = useState('');
     const [expression, setExpression] = useState('');
+    const [visibleExpression, setVisibleExpression] = useState('');
     // const buttonsList = ['x²', 'log', 'ln', '(', ')', 'x!', 'C', 'CE', '%', '/', 'sin', '7', '8', '9', 'x', 'cos', '4', '5', '6', '-', 'tan', '1', '2', '3', '+', '√', 'π', '0', '.', '='];
-     const buttonsList = ['%', 'x!', '√', 'π','x²', '(', ')', 'C','7', '8', '9', 'x','4', '5', '6', '-','1', '2', '3', '/',  '.', '0', '=','+'];
+    const buttonsList = ['%', 'x!', '√', 'π', 'x²', '(', ')', 'C', '7', '8', '9', 'x', '4', '5', '6', '-', '1', '2', '3', '/', '.', '0', '=', '+'];
     const operand = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
-    const operatorFirst = ['(','√']; //contains those operators that can be first in the expression
+    const operatorFirst = ['(', '√']; //contains those operators that can be first in the expression
     const operatorLater = ['x²', 'x!', '%', '/', '-', '+', '*']; //contains those operators that cannot be first in the expression
 
 
     function Factorial(n) {
-        var ans=1;
+        var ans = 1;
         for (var i = 2; i <= n; i++)
             ans = ans * i;
         return ans;
     }
-    const reset= () => {
+    const reset = () => {
         setLastCharacter('');
         setExpression('');
     }
@@ -46,12 +47,12 @@ export default function Calculator() {
             reset();
         }
         else {
-            if ((lastCharacter === '√')&&(operand.includes(character))) {
-                let resultt=Math.sqrt(character);
+            if ((lastCharacter === '√') && (operand.includes(character))) {
+                let resultt = Math.sqrt(character);
                 setResult(resultt);
             }
             if (character === '%') {
-                setResult(lastCharacter/100);
+                setResult(lastCharacter / 100);
             }
             if (character === 'x!') {
                 character = "!";
@@ -61,7 +62,7 @@ export default function Calculator() {
             if (character === 'π') {
                 character = "3.1416";
             }
-            if ((character === '.')&&(!operand.includes(lastCharacter))) {
+            if ((character === '.') && (!operand.includes(lastCharacter))) {
                 character = "0.";
             }
             if (character === 'x²') {
@@ -86,18 +87,32 @@ export default function Calculator() {
             else {
                 setLastCharacter(character); //update the last character
             }
-
-            console.log("exp: ", expression);
-            console.log("last: ", lastCharacter);
-            console.log("char: ", character);
-            console.log("res: ", result);
-
         }
+
+        //set visibleExpression to last 19 characters of expression
+        if (expression.length > 19) {
+            setVisibleExpression(expression.substring(expression.length - 19, expression.length));
+        }
+        else {
+            setVisibleExpression(expression);
+        }
+
     }
+
+
+    useEffect(() => {
+        //set visibleExpression to last 19 characters of expression
+        if (expression.length > 19) {
+            setVisibleExpression(expression.substring(expression.length - 19, expression.length));
+        }
+        else {
+            setVisibleExpression(expression);
+        }
+    }, [expression]);
 
     return (
         <div id="calculator">
-            <Screen result={result} expression={expression} />
+            <Screen result={result} expression={visibleExpression} />
             <div id="keyPad" className="d-flex flex-wrap justify-content-center">
                 {
                     buttonsList.map(character =>
@@ -105,7 +120,6 @@ export default function Calculator() {
                     )
                 }
             </div>
-
         </div>
     )
 }
